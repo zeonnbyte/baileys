@@ -1,7 +1,7 @@
 {
   "name": "@zeonnbyte/baileys",
   "type": "module",
-  "version": "2026.1.9-alpha.2",
+  "version": "2026.1.9-alpha.3",
   "description": "A WebSockets library for interacting with WhatsApp Web",
   "keywords": [
     "whatsapp",
@@ -29,13 +29,12 @@
     "format": "prettier --write \"src/**/*.{ts,js,json,md}\"",
     "lint": "tsc && eslint src --ext .js,.ts",
     "lint:fix": "npm run format && npm run lint -- --fix",
-    "prepack": "npm run build",
-    "prepare": "npm run build",
     "preinstall": "node ./engine-requirements.js",
     "release": "release-it",
     "test": "node --experimental-vm-modules ./node_modules/.bin/jest --testMatch '**/*.test.ts'",
     "test:e2e": "NODE_TLS_REJECT_UNAUTHORIZED=0 node --experimental-vm-modules ./node_modules/.bin/jest --runInBand --forceExit --testMatch '**/*.test-e2e.ts'",
-    "update:version": "tsx ./scripts/update-version.ts"
+    "update:version": "tsx ./scripts/update-version.ts",
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
     "@cacheable/node-cache": "^1.4.0",
