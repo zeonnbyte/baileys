@@ -1,7 +1,7 @@
 {
   "name": "@zeonnbyte/baileys",
   "type": "module",
-  "version": "2026.1.9-alpha.1",
+  "version": "2026.1.9-alpha.2",
   "description": "A WebSockets library for interacting with WhatsApp Web",
   "keywords": [
     "whatsapp",

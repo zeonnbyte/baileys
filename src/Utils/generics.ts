@@ -479,6 +479,18 @@ export function bytesToCrockford(buffer: Buffer): string {
 	return crockford.join('')
 }
 
+/**
+ * Generate an 8-char pairing code (Crockford base32) from the phone number,
+ * current milliseconds, seconds and day, plus a random 64-bit value.
+ */
+export function generatePairingCode(phoneNumber: string): string {
+  const now = new Date()
+  const rand64 = randomBytes(8).toString('hex')
+  const input = [phoneNumber, now.getMilliseconds(), now.getSeconds(), now.getDate(), rand64].join('|')
+  const digest = createHash('sha256').update(input).digest()
+  return bytesToCrockford(digest.subarray(0, 5))
+}
+
 export function encodeNewsletterMessage(message: proto.IMessage): Uint8Array {
 	return proto.Message.encode(message).finish()
 }

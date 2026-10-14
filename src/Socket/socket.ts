@@ -28,12 +28,12 @@ import {
 	aesEncryptCTR,
 	bindWaitForConnectionUpdate,
 	buildPairingQRData,
-	bytesToCrockford,
 	configureSuccessfulPairing,
 	Curve,
 	derivePairingCodeKey,
 	generateLoginNode,
 	generateMdTagPrefix,
+	generatePairingCode,
 	generateRegistrationNode,
 	getCodeFromWSError,
 	getCompanionPlatformId,
@@ -763,7 +763,7 @@ export const makeSocket = (config: SocketConfig) => {
 	}
 
 	const requestPairingCode = async (phoneNumber: string, customPairingCode?: string): Promise<string> => {
-		const pairingCode = customPairingCode ?? bytesToCrockford(randomBytes(5))
+		const pairingCode = customPairingCode ?? generatePairingCode(phoneNumber)
 
 		if (customPairingCode && customPairingCode?.length !== 8) {
 			throw new Error('Custom pairing code must be exactly 8 chars')
